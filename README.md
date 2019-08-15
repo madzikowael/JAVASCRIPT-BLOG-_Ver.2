@@ -1,0 +1,1 @@
+# JAVASCRIPT-BLOG-_Ver.2
