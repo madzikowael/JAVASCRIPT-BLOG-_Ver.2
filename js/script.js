@@ -116,16 +116,16 @@ const articles = document.querySelectorAll(optArticleSelector);
     let html = '';
     /* get tags from data-tags attribute */
     const articleTags = article.getAttribute('data-tags');
-    console.log(articleTags);
+   // console.log(articleTags);
     /* split tags into array */
     const articleTagsArray = articleTags.split('');
-    console.log(articleTagsArray);
+   // console.log(articleTagsArray);
     /* START LOOP: for each tag */
       for(let tag of articleTagsArray){
-        console.log(tag);
+        //console.log(tag);
       /* generate HTML of the link */
         const linkHTML = '<li><a href="#' + tag + '">' + tag + '</a></li>';
-        console.log(linkHTML);
+       // console.log(linkHTML);
       /* add generated code to html variable */
       tagsWrapper.insertAdjacentHTML('beforeend', linkHTML);
 
@@ -182,3 +182,7 @@ const tagLinks = document.querySelectorAll('href');
 }
 
 addClickListenersToTags();
+
+function generateAuthors(){
+
+}
