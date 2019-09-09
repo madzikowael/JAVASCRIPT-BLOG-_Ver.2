@@ -109,6 +109,26 @@ function clearTitleList(){
 
 /* GENERATE TAGS FUNCTION */
 
+function calculateTagsParams(){
+  const params =
+  {
+    max = 0;
+    min = 999999;
+  }
+  for(let tag in tags){
+    if(tags[tag] > params.max){
+      params,max = tags[tag];
+    } else {
+      (tags[tag] < params.min){
+        params.min = tags[tag];
+      }
+    }
+    console.log(tag + 'is used ' + tags[tag] + ' times');
+  }
+  return params;
+}
+
+
 function generateTags(){
   /*[NEW] create a new vairable allTags with an empty object*/
   let allTags = {};
@@ -159,6 +179,9 @@ const articles = document.querySelectorAll(optArticleSelector);
   /*[NEW] add html from allTags to tagList */
   //tagList.innerHTML = allTags.join(' ');
  // console.log(allTags);
+
+  const tagsParams = calculateTagsParams(allTags);
+  console,log('tagsParams', tagsParams);
 
  /* [NEW] create variable for all links HTML code */
  let allTagsHTML = '';
