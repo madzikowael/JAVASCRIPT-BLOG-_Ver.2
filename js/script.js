@@ -57,7 +57,8 @@ const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
   optArticleTagsSelector = '.post-tags .list',
-  optArticleAuthorSelector = '.post p.post-author';
+  optArticleAuthorSelector = '.post p.post-author',
+  optTagsListSelector =  '.tags.list;'
 
 function generateTitleLinks(customSelector = ''){
   console.log(customSelector);
@@ -109,6 +110,9 @@ function clearTitleList(){
 /* GENERATE TAGS FUNCTION */
 
 function generateTags(){
+  /*[NEW] create a new vairable allTags with an empty object*/
+  let allTags = {};
+
   /* find all articles */
 const articles = document.querySelectorAll(optArticleSelector);
   /* START LOOP: for every article: */
@@ -132,6 +136,15 @@ const articles = document.querySelectorAll(optArticleSelector);
       /* add generated code to html variable */
       tagsWrapper.insertAdjacentHTML('beforeend', linkHTML);
 
+      /* [NEW] check if this link is NOT already in allTags */
+      if(!allTags.hasOwnProperty(tag)){
+        /*[NEW] add tag to allTags obbject*/
+        allTags[tag] = 1;
+        } else {
+          allTags[tag]++;
+        }
+
+
     /* END LOOP: for each tag */
       html = html + linkHTML;
       }
@@ -139,6 +152,25 @@ const articles = document.querySelectorAll(optArticleSelector);
       tagsWrapper.innerHTML = html;
   /* END LOOP: for every article: */
   }
+
+  /*[NEW] find list of tags in right column*/
+  const tagList = document.querySelector('.tags');
+
+  /*[NEW] add html from allTags to tagList */
+  //tagList.innerHTML = allTags.join(' ');
+ // console.log(allTags);
+
+ /* [NEW] create variable for all links HTML code */
+ let allTagsHTML = '';
+
+ /* {NEW} START LOOP: for each tag in allTags */
+  for(let tag of allTags){
+    /* [NEW] generate code of link and add it to allTags */
+    allTagsHTML += tag + ' (' + allTags[tag] + ')';
+  }
+  /* [NEW] END LOOP : for each tag in allTAgs: */
+  /*[NEW] add html from allTagsHTML to tagList */
+  tagList.innerHTML = allTagsHTML;
 }
 
 generateTags();
@@ -264,4 +296,7 @@ function authorClickHandler (event){
 }
 authorClickHandler();
 
+/*
+________________________________________
 
+__________________________________________*/
