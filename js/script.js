@@ -130,6 +130,19 @@ function calculateTagsParams(tags){
  return params;
 }
 
+function calculateTagClass(count, params){
+  /* Looking for a count, which is a subtract beetween a value out tag(6) vs. params.min*/
+  const normalizedCount = count - params.min;
+  /* Do const as subtract beetween params.max & params.min*/
+  const normalizedMax = params.max - params.min;
+  /* do percentage beetwen normalizedCount & normalizedMax*/
+  const percentage = normalizedCount / normalizedMax;
+  /* do const classNumber as algorithm integer lottery draw*/
+  const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
+
+  return(optCloudClassPrefix, classNumber);
+}
+
 function generateTags(){
   /*[NEW] create a new vairable allTags with an empty object*/
   let allTags = {};
@@ -189,8 +202,13 @@ const articles = document.querySelectorAll(optArticleSelector);
 
  /* {NEW} START LOOP: for each tag in allTags */
   for(let tag in allTags){
-    /* [NEW] generate code of link and add it to allTags */
-    allTagsHTML += `<li><a href="#${tag}"><span>${tag} (${allTags[tag]})</span></span></a></li>`;
+    /* [NEW] generate code of link and add it to allTagsHTML */
+
+    const tagLinkHTML = '<li><a class"' + calculateTagClass(allTags[tag], tagsParams) + '"</a></li>';
+
+    allTagsHTML += tagLinkHTML;
+
+    console.log('tagLinkHTML:', tagLinkHTML);
   }
   /* [NEW] END LOOP : for each tag in allTAgs: */
   /*[NEW] add html from allTagsHTML to tagList */
