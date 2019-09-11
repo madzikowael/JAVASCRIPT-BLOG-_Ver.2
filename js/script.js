@@ -204,11 +204,12 @@ const articles = document.querySelectorAll(optArticleSelector);
   for(let tag in allTags){
     /* [NEW] generate code of link and add it to allTagsHTML */
 
-    const tagLinkHTML = '<li><a class"' + calculateTagClass(allTags[tag], tagsParams) + '"</a></li>';
+    allTagsHTML += `<li><a href="#${tag}"><span>${tag} (${allTags[tag]})</span></a></li>`;
+    //const tagLinkHTML = '<li><a class"' + calculateTagClass(allTags[tag], tagsParams) + '"</a></li>';
 
-    allTagsHTML += tagLinkHTML;
+   // allTagsHTML += tagLinkHTML;
 
-    console.log('tagLinkHTML:', tagLinkHTML);
+    //console.log('tagLinkHTML:', tagLinkHTML);
   }
   /* [NEW] END LOOP : for each tag in allTAgs: */
   /*[NEW] add html from allTagsHTML to tagList */
@@ -268,19 +269,19 @@ ________________________________________
 function generateAuthors(){
   /* find all authors */
   const authors = document.querySelectorAll(optArticleAuthorSelector);
-  console.log('Those are authors:', authors);
+  //console.log('Those are authors:', authors);
   /* START LOOP for each authors */
   for(let author of authors){
     const authorWrapper = author.querySelector(optArticleAuthorSelector);
-    console.log("Here is author wrapper", authorWrapper);
+   // console.log("Here is author wrapper", authorWrapper);
       /* make html variable with empty string */
     let html = '';
       /* get authors from data-authors attribute */
     const articleAuthor = author.getAttribute('data-author');
-      console.log('get authors from attribute', articleAuthor);
+     // console.log('get authors from attribute', articleAuthor);
       /* generate HTML of the link of author */
     const authorHTML = '<a href="#' + articleAuthor + '">' + articleAuthor + '</a>';
-         console.log('link: ', authorHTML);
+       //  console.log('link: ', authorHTML);
        /* add generated code to html variable */
     html = html + authorHTML;
       /* insert HTML of all the links into the tags wrapper */
