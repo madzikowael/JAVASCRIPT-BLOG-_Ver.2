@@ -204,7 +204,7 @@ const articles = document.querySelectorAll(optArticleSelector);
   for(let tag in allTags){
     /* [NEW] generate code of link and add it to allTagsHTML */
 
-    allTagsHTML += `<li><a class="${'#' + optCloudClassPrefix + calculateTagClass(allTags[tag], tagsParams)}" href="#${tag}"><span>${tag} (${allTags[tag]})</span></a></li>`;
+    allTagsHTML += `<li><a class="${optCloudClassPrefix + calculateTagClass(allTags[tag], tagsParams)}" href="#${tag}"><span>${tag} (${allTags[tag]})</span></a></li>`;
     //const tagLinkHTML = '<li><a class"' + calculateTagClass(allTags[tag], tagsParams) + '"</a></li>';
 
    // allTagsHTML += tagLinkHTML;

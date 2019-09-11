@@ -123,3 +123,33 @@ body {
     margin: 0 10px 0 0;
   }
 }
+
+
+.tag-size-1 {
+  color: black;
+  font-size: 12px;
+}
+
+.tag-size-2 {
+  color: green;
+  font-size: 15px;
+}
+
+.tag-size-3 {
+  color: blue;
+  font-size: 18px;
+}
+
+.tag-size-4 {
+  color: purple;
+  font-size: 21px;
+}
+
+.tag-size-5 {
+  color: orange;
+  font-size: 24px;
+  font-weight: 800;
+}
+ul.list.tags{
+  display: inline-block;
+}
