@@ -270,6 +270,7 @@ ________________________________________
  */
 
 function calculateAuthorsParams(authors){
+  console.log('calculate authors', calculateAuthorsParams);
   const params =
   {
     max: 0,
@@ -315,7 +316,7 @@ function generateAuthors(){
       /* generate HTML of the link of author */
     const authorHTML = '<a href="#' + articleAuthor + '">' + articleAuthor + '</a>';
        //  console.log('link: ', authorHTML);
-    authorsWrapper.insertAdjacentHTML('beforeend', authorHTML)
+    //authorsWrapper.insertAdjacentHTML('beforeend', authorHTML)
 
     /*[NEW] check if this link is NOT already in allAuthors */
     if(!allAuthors.hasOwnProperty(author)){
@@ -330,6 +331,24 @@ function generateAuthors(){
     authorsWrapper.innerHTML = html;
       /* END LOOP: for every author: */
       }
+
+    /* [new] find list of authors in right column*/
+    const authorsList = document.querySelector('.authors')  ;
+    console.log(allAuthors);
+
+    const authorsParams = calculateAuthorsParams(allAuthors);
+    console.log('authorsParams', authorsParams);
+
+    /* [new] create variable for all authors links HTML code */
+    let allAuthorsHTML = '';
+
+    /* [new] START LOOP: for each author in allAuthors */
+    for(let author in allAuthors){
+      /*[new] generate code of link and add it to allAuthorsHTML */
+      allAuthorsHTML += `<li><a class="${optCloudAuthorClassPrefix + calculateAuthorClass(allAuthors[author], authorsParams)}" href="${author}"><span>${author}</span></a></li>`;
+    }
+    /* [new] add html from allAuthorsHTML to authorList*/
+    authorsList.innerHTML = allAuthorsHTML;
 }
 generateAuthors();
 addClickListenersToAuthors();
