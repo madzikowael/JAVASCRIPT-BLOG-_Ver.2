@@ -267,9 +267,34 @@ GENERATE AUTHORS function
 ________________________________________
  */
 
+function calculateAuthorsParams(authors){
+  const params =
+  {
+    max: 0,
+    min: 999999
+  }
+  for(let author in authors){
+    if(authors[author] > params.max){
+      params.max = authors[author];
+    } else {
+      if (authors[author] < params.min){
+        params.min = authors[author];
+    }
+  }
+  return params;
+}
+}
+
+function calculateAuthorClass(count, params){
+
+}
+
 function generateAuthors(){
+  /*/[New] create a new vairable allAuthors with an empty objet*/
+  let allAuthors = {};
+
   /* find all authors */
-  const authors = document.querySelectorAll(optArticleAuthorSelector);
+  const authors = document.querySelectorAll(optArticleSelector);
   //console.log('Those are authors:', authors);
   /* START LOOP for each authors */
   for(let author of authors){
@@ -283,10 +308,19 @@ function generateAuthors(){
       /* generate HTML of the link of author */
     const authorHTML = '<a href="#' + articleAuthor + '">' + articleAuthor + '</a>';
        //  console.log('link: ', authorHTML);
+    authorsWrapper.insertAdjacentHTML('beforeend', authorHTML)
+
+    /*[NEW] check if this link is NOT already in allAuthors */
+    if(!allAuthors.hasOwnProperty(author)){
+      /* [NEW] add author to allAuthors object*/
+      allAuthors[author] = 1;
+    } else {
+      allAuthors[author]++;
+    }
        /* add generated code to html variable */
     html = html + authorHTML;
       /* insert HTML of all the links into the tags wrapper */
-    author.innerHTML = html;
+    authorsWrapper.innerHTML = html;
       /* END LOOP: for every author: */
       }
 }
