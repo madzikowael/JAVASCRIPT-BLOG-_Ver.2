@@ -344,9 +344,9 @@ function generateAuthors(){
     let allAuthorsHTML = '';
 
     /* [new] START LOOP: for each author in allAuthors */
-    for(let tag in allTags){
+    for(let articleAuthor in allTags){
       /*[new] generate code of link and add it to allAuthorsHTML */
-      allAuthorsHTML += `<li><a class="${optCloudClassPrefix + calculateAuthorClass(allTags[tag], authorsParams)}" href="#${'author-'}"><span>${tag}</span></a></li>`;
+      allAuthorsHTML += `<li><a class="${optCloudClassPrefix + calculateAuthorClass(allTags[articleAuthor], authorsParams)}" href="#${'author-'}"><span>${articleAuthor}</span></a></li>`;
     }
     /* [new] add html from allAuthorsHTML to authorList*/
     tagList.innerHTML = allAuthorsHTML;
