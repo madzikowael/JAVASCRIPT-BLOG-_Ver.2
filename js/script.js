@@ -285,8 +285,9 @@ function calculateAuthorsParams(authors){
         params.min = authors[author];
     }
   }
+    console.log(author + 'is used ' + authors[author] + 'times');
+  }
   return params;
-}
 }
 
 function calculateAuthorClass(count, params){
@@ -361,7 +362,7 @@ function generateAuthors(){
 }
 
 generateAuthors();
-
+addClickListenersToAuthors();
 
 function authorClickHandler(event) {
   /*prevent action for this event*/
@@ -405,4 +406,4 @@ const authorsLinks = document.querySelectorAll('.post-author .list a');
 /* END LOOP: for each link */
 }
 
-addClickListenersToAuthors();
+
