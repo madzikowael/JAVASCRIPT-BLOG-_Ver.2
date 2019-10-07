@@ -265,6 +265,8 @@ function addClickListenersToTags(){
   /* END LOOP: for each link */
 
 }
+
+
 /* _____________________________________
 GENERATE AUTHORS function
 ________________________________________
@@ -285,7 +287,7 @@ function calculateAuthorsParams(authors){
         params.min = authors[author];
     }
   }
-    console.log(author + 'is used ' + authors[author] + 'times');
+    //console.log(author + 'is used ' + authors[author] + 'times');
   }
   return params;
 }
@@ -342,10 +344,10 @@ function generateAuthors(){
 
     /* [new] find list of authors in right column*/
     const authorList = document.querySelector('.authors');
-    console.log(authorList);
+   // console.log(authorList);
 
     const authorsParams = calculateAuthorsParams(allAuthors);
-    console.log('authorsParams', authorsParams);
+   // console.log('authorsParams', authorsParams);
 
     /* [new] create variable for all authors links HTML code */
     let allAuthorsHTML = '';
@@ -353,8 +355,8 @@ function generateAuthors(){
     /* [new] START LOOP: for each author in allAuthors */
     for(let articleAuthor in allAuthors){
       /*[new] generate code of link and add it to allAuthorsHTML */
-      const authorLinkHTML = '<li><a class="' + optCloudClassPrefix + calculateAuthorClass(allAuthors[articleAuthor], authorsParams) + '"' + 'href="author-' + articleAuthor + '"><span>' + articleAuthor + '</span></a></li>';
-      console.log('authorLinkHTML', authorLinkHTML)
+      const authorLinkHTML = '<li><a class="' + optCloudClassPrefix + calculateAuthorClass(allAuthors[articleAuthor], authorsParams) + '"' + 'href="#author-' + articleAuthor + '"><span>' + articleAuthor + '</span></a></li>';
+     // console.log('authorLinkHTML', authorLinkHTML)
     allAuthorsHTML = allAuthorsHTML + authorLinkHTML;
     }
     /* [new] add html from allAuthorsHTML to authorList*/
@@ -372,7 +374,7 @@ function authorClickHandler(event) {
   /* make a new const 'href' and read the attribute href of the clicked element */
   const href = clickedElement.getAttribute('href');
   /* make a new const 'author' and extract author from the 'href' constant */
-  const author = href.replace('#author-', '');
+  const author = href.replace('#', '');
   /* find all author links with class active */
   const activeAuthorLinks = document.querySelectorAll('a.active[href^="#author-"]');
     /*START LOOP: for each active author Link*/
@@ -406,12 +408,25 @@ const authorsLinks = document.querySelectorAll('.post-author .list a');
 /* END LOOP: for each link */
 }
 
+
+/*_______________________ SIDEBAR__________*/
+
+
 function addClickListenersSidebarToAuthors () {
   const listSidebarAuthors = document.querySelectorAll('ul .list.authors a');
-  for(let listSidebarAuthor of listSidebarAuthors){
-  listSidebarAuthor.addEventListener('click', authorClickHandler)
+    for(let listSidebarAuthor of listSidebarAuthors){
+    listSidebarAuthor.addEventListener('click', authorClickHandler)
   }
 }
 
 addClickListenersSidebarToAuthors();
+
+function addClickListenersSidebarToTags () {
+  const links = document.querySelectorAll('ul .list.tags a');
+    for(let link of links){
+      link.addEventListener('click', tagClickHandler);
+    }
+}
+
+addClickListenersSidebarToTags();
 
